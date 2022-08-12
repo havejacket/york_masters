@@ -1,11 +1,15 @@
-key = "jreg2rv3e87th"
-secret = "3YeXq_v9lBMkzfvaVqqslVr0qPkpV7GwF_E7Izl51xE"
 
+import os
 from pytest import mark
 from luno_python.client import Client
 from datetime import date, datetime
 import sched, time
 
+# Get environment variables
+key = os.getenv('LUNO_KEY')
+secret = os.environ.get('LUNO_SECRET')
+
+#schedule to tick every second
 s = sched.scheduler(time.time, time.sleep)
 
 
