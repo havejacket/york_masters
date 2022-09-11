@@ -1,6 +1,6 @@
 
-import os
-from pytest import mark
+import os, json
+
 from luno_python.client import Client
 from datetime import date, datetime
 import sched, time
@@ -75,6 +75,11 @@ def do_trade(sc):
     f = open("trades_01.csv", "a")
     print(nowtime,start_cash, xbt, eth, end_cash, abs(end_cash-start_cash), fee, sep=",", file=f)
     f.close()
+
+    f = open("rates.json", "a")
+    print(json.dumps(data), file=f)
+    f.close()
+
     sc.enter(1, 1, do_trade, (sc,))
 
 s.enter(1, 1, do_trade, (s,))
